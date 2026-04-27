@@ -1,0 +1,15 @@
+- name: Deploy Maven Artifact
+  hosts: local
+  become: yes
+
+  tasks:
+    - name: Create deployment folder
+      file:
+        path: /opt/deployment
+        state: directory
+
+    - name: Copy artifact
+      copy:
+        src: /mnt/c/ProgramData/Jenkins/.jenkins/workspace/HelloMaven/target/helloworld1-1.0-SNAPSHOT.jar
+        dest: /opt/deployment/HelloMaven.jar
+
